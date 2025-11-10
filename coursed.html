@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Courses - University Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#137fec",
+                    "background-light": "#f6f7f8",
+                    "background-dark": "#101922",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+    </script>
+<style>
+    .glass-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .light .glass-card {
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .progress-circle {
+        transform: rotate(-90deg);
+    }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<div class="relative min-h-screen w-full">
+<div class="absolute inset-0 z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] h-96 w-96 rounded-full bg-primary/20 blur-3xl filter"></div>
+<div class="absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-purple-500/20 blur-3xl filter"></div>
+<div class="absolute top-[20%] right-[10%] h-80 w-80 rounded-full bg-teal-500/20 blur-3xl filter"></div>
+</div>
+<div class="flex h-full min-h-screen">
+<aside class="flex h-screen w-64 flex-col bg-background-light/50 dark:bg-background-dark/50 border-r border-white/10 dark:border-white/10 p-4 sticky top-0">
+<div class="flex items-center gap-3 text-gray-800 dark:text-white px-3 py-3">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold">University</h2>
+</div>
+<div class="flex h-full flex-col justify-between pt-8">
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-primary/20 px-3 py-2 text-primary dark:text-white dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined">school</span>
+<p class="text-sm font-medium">Courses</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<p class="text-sm font-medium">Library</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-sm font-medium">Calendar</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium">Profile</p>
+</a>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 p-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Alex Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCmwl501yziXytQsAn82w4grujCNlTqI-TCftrlEcq7pgr5YDjMqXjFq5RnBhZbGOM-zRKZfVajYnNgXKchCfNDJ2bC2CvFKOPFbsd-AIQ0Vs5moKgAnHBC3BD4VXScc4prGMn87sdKSXZ2vyzCNSelwa9x3teMoDO36hoi3TTebeqq_3OhIMAhgvdESfspCEZ9r_NgpE5V7dyp6o-u3-9fK-zD4-0PqCtsbGmKiCX4ndB8gX3uJbv5NsyCp17i4K8nY6rjCGIJA");'></div>
+<div class="flex flex-col">
+<h1 class="text-gray-900 dark:text-white text-sm font-medium">Alex Johnson</h1>
+<p class="text-gray-500 dark:text-gray-400 text-xs">Computer Science</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<header class="flex items-center justify-between">
+<div>
+<h1 class="text-gray-900 dark:text-white text-3xl font-bold tracking-tight">My Courses</h1>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Here are your enrolled courses for the semester.</p>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
+<input class="form-input w-full min-w-40 max-w-64 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-black/20 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary h-10 placeholder:text-gray-400 dark:placeholder:text-gray-500 pl-10 text-sm" placeholder="Search courses..." value=""/>
+</label>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-white/50 dark:bg-black/20 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+</div>
+</header>
+<div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-primary dark:text-primary-300">COMP101</p>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Introduction to Programming</h3>
+</div>
+<div class="bg-teal-500/20 text-teal-500 dark:text-teal-300 rounded-full px-2 py-0.5 text-xs font-medium">Core</div>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Instructor: Dr. Alan Turing</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span>View Details</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20" href="#">
+<svg class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.001 2.016C6.486 2.016 2.001 6.494 2.001 12.009C2.001 17.524 6.486 22.002 12.001 22.002C17.516 22.002 22.001 17.524 22.001 12.009C22.001 6.494 17.516 2.016 12.001 2.016ZM12.001 3.516C16.696 3.516 20.501 7.321 20.501 12.009C20.501 16.697 16.696 20.502 12.001 20.502C7.306 20.502 3.501 16.697 3.501 12.009C3.501 7.321 7.306 3.516 12.001 3.516ZM11.001 6.509V8.009H13.001V6.509H11.001ZM11.001 9.509V17.509H13.001V9.509H11.001Z"></path>
+</svg>
+<span class="sr-only">Go to Canvas</span>
+</a>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-primary dark:text-primary-300">PHYS203</p>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Modern Physics</h3>
+</div>
+<div class="bg-teal-500/20 text-teal-500 dark:text-teal-300 rounded-full px-2 py-0.5 text-xs font-medium">Core</div>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Instructor: Dr. Marie Curie</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span>View Details</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20" href="#">
+<svg class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.001 2.016C6.486 2.016 2.001 6.494 2.001 12.009C2.001 17.524 6.486 22.002 12.001 22.002C17.516 22.002 22.001 17.524 22.001 12.009C22.001 6.494 17.516 2.016 12.001 2.016ZM12.001 3.516C16.696 3.516 20.501 7.321 20.501 12.009C20.501 16.697 16.696 20.502 12.001 20.502C7.306 20.502 3.501 16.697 3.501 12.009C3.501 7.321 7.306 3.516 12.001 3.516ZM11.001 6.509V8.009H13.001V6.509H11.001ZM11.001 9.509V17.509H13.001V9.509H11.001Z"></path>
+</svg>
+<span class="sr-only">Go to Canvas</span>
+</a>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-primary dark:text-primary-300">ENGL110</p>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Academic Writing</h3>
+</div>
+<div class="bg-purple-500/20 text-purple-500 dark:text-purple-300 rounded-full px-2 py-0.5 text-xs font-medium">Elective</div>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Instructor: Dr. William Shakespeare</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span>View Details</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20" href="#">
+<svg class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.001 2.016C6.486 2.016 2.001 6.494 2.001 12.009C2.001 17.524 6.486 22.002 12.001 22.002C17.516 22.002 22.001 17.524 22.001 12.009C22.001 6.494 17.516 2.016 12.001 2.016ZM12.001 3.516C16.696 3.516 20.501 7.321 20.501 12.009C20.501 16.697 16.696 20.502 12.001 20.502C7.306 20.502 3.501 16.697 3.501 12.009C3.501 7.321 7.306 3.516 12.001 3.516ZM11.001 6.509V8.009H13.001V6.509H11.001ZM11.001 9.509V17.509H13.001V9.509H11.001Z"></path>
+</svg>
+<span class="sr-only">Go to Canvas</span>
+</a>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-primary dark:text-primary-300">MATH101</p>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Calculus I</h3>
+</div>
+<div class="bg-teal-500/20 text-teal-500 dark:text-teal-300 rounded-full px-2 py-0.5 text-xs font-medium">Core</div>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Instructor: Dr. Isaac Newton</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span>View Details</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20" href="#">
+<svg class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.001 2.016C6.486 2.016 2.001 6.494 2.001 12.009C2.001 17.524 6.486 22.002 12.001 22.002C17.516 22.002 22.001 17.524 22.001 12.009C22.001 6.494 17.516 2.016 12.001 2.016ZM12.001 3.516C16.696 3.516 20.501 7.321 20.501 12.009C20.501 16.697 16.696 20.502 12.001 20.502C7.306 20.502 3.501 16.697 3.501 12.009C3.501 7.321 7.306 3.516 12.001 3.516ZM11.001 6.509V8.009H13.001V6.509H11.001ZM11.001 9.509V17.509H13.001V9.509H11.001Z"></path>
+</svg>
+<span class="sr-only">Go to Canvas</span>
+</a>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-primary dark:text-primary-300">HIST105</p>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mt-1">World History</h3>
+</div>
+<div class="bg-purple-500/20 text-purple-500 dark:text-purple-300 rounded-full px-2 py-0.5 text-xs font-medium">Elective</div>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Instructor: Dr. Herodotus</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span>View Details</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20" href="#">
+<svg class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.001 2.016C6.486 2.016 2.001 6.494 2.001 12.009C2.001 17.524 6.486 22.002 12.001 22.002C17.516 22.002 22.001 17.524 22.001 12.009C22.001 6.494 17.516 2.016 12.001 2.016ZM12.001 3.516C16.696 3.516 20.501 7.321 20.501 12.009C20.501 16.697 16.696 20.502 12.001 20.502C7.306 20.502 3.501 16.697 3.501 12.009C3.501 7.321 7.306 3.516 12.001 3.516ZM11.001 6.509V8.009H13.001V6.509H11.001ZM11.001 9.509V17.509H13.001V9.509H11.001Z"></path>
+</svg>
+<span class="sr-only">Go to Canvas</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
