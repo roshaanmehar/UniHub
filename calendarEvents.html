@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>University Dashboard - Calendar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#137fec",
+                    "background-light": "#f6f7f8",
+                    "background-dark": "#101922",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+    </script>
+<style>
+    .glass-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .light .glass-card {
+        background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .progress-circle {
+        transform: rotate(-90deg);
+    }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<div class="relative min-h-screen w-full">
+<div class="absolute inset-0 z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] h-96 w-96 rounded-full bg-primary/20 blur-3xl filter"></div>
+<div class="absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-purple-500/20 blur-3xl filter"></div>
+<div class="absolute top-[20%] right-[10%] h-80 w-80 rounded-full bg-teal-500/20 blur-3xl filter"></div>
+</div>
+<div class="flex h-full min-h-screen">
+<aside class="flex h-screen w-64 flex-col bg-background-light/50 dark:bg-background-dark/50 border-r border-white/10 dark:border-white/10 p-4 sticky top-0">
+<div class="flex items-center gap-3 text-gray-800 dark:text-white px-3 py-3">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold">University</h2>
+</div>
+<div class="flex h-full flex-col justify-between pt-8">
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">school</span>
+<p class="text-sm font-medium">Courses</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<p class="text-sm font-medium">Library</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-primary/20 px-3 py-2 text-primary dark:text-white dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-sm font-medium">Calendar</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium">Profile</p>
+</a>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 p-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Alex Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCmwl501yziXytQsAn82w4grujCNlTqI-TCftrlEcq7pgr5YDjMqXjFq5RnBhZbGOM-zRKZfVajYnNgXKchCfNDJ2bC2CvFKOPFbsd-AIQ0Vs5moKgAnHBC3BD4VXScc4prGMn87sdKSXZ2vyzCNSelwa9x3teMoDO36hoi3TTebeqq_3OhIMAhgvdESfspCEZ9r_NgpE5V7dyp6o-u3-9fK-zD4-0PqCtsbGmKiCX4ndB8gX3uJbv5NsyCp17i4K8nY6rjCGIJA");'></div>
+<div class="flex flex-col">
+<h1 class="text-gray-900 dark:text-white text-sm font-medium">Alex Johnson</h1>
+<p class="text-gray-500 dark:text-gray-400 text-xs">Computer Science</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<header class="flex items-center justify-between">
+<div>
+<h1 class="text-gray-900 dark:text-white text-3xl font-bold tracking-tight">Calendar</h1>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Your schedule for lectures, events, and deadlines.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-black/20 p-1 text-sm">
+<button class="px-3 py-1 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10">Day</button>
+<button class="px-3 py-1 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10">Week</button>
+<button class="px-3 py-1 rounded-md bg-primary text-white">Month</button>
+</div>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-white/50 dark:bg-black/20 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-xl">add</span>
+</button>
+</div>
+</header>
+<div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+<div class="lg:col-span-2">
+<div class="glass-card rounded-xl p-6 h-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-200 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</button>
+<h2 class="text-lg font-bold text-gray-900 dark:text-white text-center">October 2024</h2>
+<button class="flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-200 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</button>
+</div>
+<button class="text-sm font-medium text-primary hover:underline">Today</button>
+</div>
+<div class="mt-6 grid grid-cols-7 gap-px text-center text-xs font-medium text-gray-500 dark:text-gray-400 border-t border-l border-gray-200 dark:border-gray-700 bg-gray-200 dark:bg-gray-700">
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Sun</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Mon</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Tue</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Wed</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Thu</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Fri</div>
+<div class="py-2 border-r border-b border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark">Sat</div>
+<script>
+                            const calendarDays = [
+                                { day: 29, otherMonth: true }, { day: 30, otherMonth: true }, { day: 1 }, { day: 2 }, { day: 3 }, { day: 4 }, { day: 5 },
+                                { day: 6 }, { day: 7 }, { day: 8 }, { day: 9 }, { day: 10, event: "lecture" }, { day: 11 }, { day: 12 },
+                                { day: 13 }, { day: 14 }, { day: 15, event: "deadline" }, { day: 16 }, { day: 17 }, { day: 18, event: "lecture", selected: true }, { day: 19 },
+                                { day: 20 }, { day: 21 }, { day: 22 }, { day: 23 }, { day: 24, event: "event" }, { day: 25 }, { day: 26 },
+                                { day: 27 }, { day: 28, event: "deadline" }, { day: 29 }, { day: 30 }, { day: 31 }, { day: 1, otherMonth: true }, { day: 2, otherMonth: true },
+                            ];
+                            calendarDays.forEach(day => {
+                                let classes = "relative p-2 h-24 border-r border-b border-gray-200 dark:border-gray-700 flex flex-col items-start bg-background-light dark:bg-background-dark text-sm";
+                                if (day.otherMonth) classes += " text-gray-400 dark:text-gray-500";
+                                if (day.selected) classes += " bg-primary/10 dark:bg-primary/20";
+                                document.write(`<div class="${classes}"><span class="font-medium">${day.day}</span>`);
+                                if (day.event === 'lecture') {
+                                    document.write('<div class="mt-1 h-1.5 w-full rounded-full bg-blue-400"></div>');
+                                } else if (day.event === 'deadline') {
+                                    document.write('<div class="mt-1 h-1.5 w-full rounded-full bg-red-400"></div>');
+                                } else if (day.event === 'event') {
+                                    document.write('<div class="mt-1 h-1.5 w-full rounded-full bg-purple-400"></div>');
+                                }
+                                document.write(`</div>`);
+                            });
+                        </script>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="glass-card rounded-xl p-6 h-full">
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Friday, October 18</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400">3 events scheduled</p>
+<div class="mt-6 flex flex-col gap-4">
+<div class="flex gap-4">
+<div class="text-sm font-medium text-gray-500 dark:text-gray-400 w-16 text-right">09:00 AM</div>
+<div class="relative flex-1 pl-4">
+<div class="absolute left-0 top-1 h-full w-px bg-blue-400"></div>
+<div class="absolute left-[-4px] top-1 h-2 w-2 rounded-full bg-blue-400"></div>
+<p class="font-medium text-gray-800 dark:text-gray-100">COMP101 Lecture</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Room 301, Eng. Building</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="text-sm font-medium text-gray-500 dark:text-gray-400 w-16 text-right">02:00 PM</div>
+<div class="relative flex-1 pl-4">
+<div class="absolute left-0 top-1 h-full w-px bg-purple-400"></div>
+<div class="absolute left-[-4px] top-1 h-2 w-2 rounded-full bg-purple-400"></div>
+<p class="font-medium text-gray-800 dark:text-gray-100">Study Group</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Library, Floor 2</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="text-sm font-medium text-gray-500 dark:text-gray-400 w-16 text-right">11:59 PM</div>
+<div class="relative flex-1 pl-4">
+<div class="absolute left-[-4px] top-1 h-2 w-2 rounded-full bg-red-400"></div>
+<p class="font-medium text-gray-800 dark:text-gray-100">Project Proposal Due</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Canvas Submission</p>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+<h3 class="text-sm font-semibold text-gray-900 dark:text-white">Event Type Key</h3>
+<div class="mt-3 flex flex-col gap-2 text-xs">
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-blue-400"></div>
+<span class="text-gray-600 dark:text-gray-300">Lecture / Tutorial</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-red-400"></div>
+<span class="text-gray-600 dark:text-gray-300">Assignment Deadline</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-purple-400"></div>
+<span class="text-gray-600 dark:text-gray-300">University Event</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
